@@ -19,14 +19,26 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33aab5b4-7f6c-4716-82f1-97e5a8cecac7" name="Default Changelist" comment="sample added">
-      <change afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home/custom.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/LAB9_10.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LAB9_10.iml" afterDir="false" />
+    <list default="true" id="33aab5b4-7f6c-4716-82f1-97e5a8cecac7" name="Default Changelist" comment="started to add templates">
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/doctrine/Microposts.orm.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/doctrine/Users.orm.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/doca.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/dogFaro.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/venice.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/RegisterController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Microposts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Users.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/login/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/register/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BlogController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/blog/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,12 +161,15 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1lCHAxS8A6AH1lOoiB6MJkRcRZS" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -164,6 +179,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/img" />
       <recent name="$PROJECT_DIR$/public" />
     </key>
   </component>
@@ -176,7 +192,7 @@
       <option name="presentableId" value="Default" />
       <updated>1607094012402</updated>
       <workItem from="1607094013451" duration="3913000" />
-      <workItem from="1607182537905" duration="3655000" />
+      <workItem from="1607182537905" duration="7716000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <created>1607094119472</created>
@@ -192,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607100390278</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="started to add templates">
+      <created>1607186384150</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1607186384150</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,9 +233,11 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Init" />
     <MESSAGE value="sample added" />
-    <option name="LAST_COMMIT_MESSAGE" value="sample added" />
+    <MESSAGE value="started to add templates" />
+    <option name="LAST_COMMIT_MESSAGE" value="started to add templates" />
   </component>
   <component name="WindowStateProjectService">
     <state x="394" y="109" key="#PHP" timestamp="1607184755221">
@@ -227,9 +252,10 @@
       <screen x="0" y="25" width="1440" height="875" />
     </state>
     <state x="229" y="98" key="SettingsEditor/0.25.1440.875@0.25.1440.875" timestamp="1607096881066" />
-    <state x="320" y="186" key="Vcs.Push.Dialog.v2" timestamp="1607100392117">
+    <state x="320" y="186" key="Vcs.Push.Dialog.v2" timestamp="1607186386717">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
+    <state x="320" y="186" key="Vcs.Push.Dialog.v2/-1920.-651.1920.1055/0.25.1440.875@0.25.1440.875" timestamp="1607186386717" />
     <state x="320" y="186" key="Vcs.Push.Dialog.v2/0.25.1440.875@0.25.1440.875" timestamp="1607100392117" />
     <state x="521" y="380" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607101026378">
       <screen x="0" y="25" width="1440" height="875" />
@@ -239,5 +265,9 @@
       <screen x="0" y="25" width="1440" height="875" />
     </state>
     <state x="542" y="360" key="git4idea.remote.GitConfigureRemotesDialog/0.25.1440.875@0.25.1440.875" timestamp="1607094071259" />
+    <state x="385" y="214" key="search.everywhere.popup" timestamp="1607188306879">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="385" y="214" key="search.everywhere.popup/-1920.-651.1920.1055/0.25.1440.875@0.25.1440.875" timestamp="1607188306879" />
   </component>
 </project>

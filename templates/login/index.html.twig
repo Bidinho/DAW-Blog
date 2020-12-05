@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LoginController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="login-form mt-4 pt-4 white-box rounded">
+            <form action="login_action.php" method="post">
+                <h1 class="mt-5 text-center">Login</h1>
+                <div class="form-group pt-4 form-bars">
+                    <input type="text" class="form-control" name="userEmail" placeholder="Email" value="">
+                </div>
+                <div class="form-group form-bars">
+                    <input type="password" class="form-control" name="userPwd" placeholder="Password">
+                </div>
+                <div class="text-center pt-3">
+                    <button type="submit" style="width:10rem;" class="btn main-blue text-light">Log in</button>
+                    <input class='ml-3' type="checkbox" name="autologin" value="1"> Remember me</input>
+{#                    <a class ='ml-3' href="password_reset.php">Forgot password?</a>#}
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}
