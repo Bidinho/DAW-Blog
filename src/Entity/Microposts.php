@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Microposts
  *
  * @ORM\Table(name="microposts", indexes={@ORM\Index(name="fk_user_id", columns={"user_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\MicropostsRepository")
  */
 class Microposts
 {

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+    {{ form_start(registrationForm) }}
+    {{ form_errors(registrationForm) }}
+    <section class="container form mt-4 white-box rounded">
+        <div class="pt-4">
+            <h1 class="text-center mb-4"> Sign up</h1>
+
+
+
+            <div class="form-group pb-3 form-bars">
+                {{ form_row(registrationForm.name) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.password_digest.first,{'attr' :{'class' : 'form-control mb-4'}}) }}
+                {{ form_row(registrationForm.password_digest.second,{'attr' :{'class' : 'form-control mb-4'}}) }}
+            </div>
+            <div class="text-center pt-5">
+                <button type="submit" style="width: 15rem;" class="btn main-blue text-light">Go</button>
+                <button type="reset" style="width: 15rem;" class="btn btn-danger">Clear</button>
+            </div>
+        </div>
+    </section>
+{% endblock %}

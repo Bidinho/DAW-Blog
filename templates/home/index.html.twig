@@ -26,4 +26,31 @@
         </a>
     </div>
 
+
+
+    {% for post in posts %}
+
+    <section>
+        <div class="p-4">
+            <div class="card">
+                <div class="card-header rounded h3 blue-gradient-right text-light row">
+                    <div class='col'>
+                        {{ post.name }}
+                    </div>
+                    <a class='text-right col nav-link text-light small' {% if post.userId == info.uId %} href="blog.php?postId={{ post.postId }}"> Update {% else %} > {% endif %}
+                    </a>
+                </div>
+            </div>
+            <div class="card-body rounded-bottom grey-color">
+                <p>Updated: <span> {{ post.updated_at }}</span></p>
+                <p>Created: <span> {{ post.created_at }}</span></p>
+                <a>{{ post.content }}</a>
+            </div>
+        </div>
+        </div>
+
+    </section>
+    {% endfor %}
+
+
 {% endblock %}
