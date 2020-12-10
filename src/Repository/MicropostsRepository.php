@@ -19,32 +19,13 @@ class MicropostsRepository extends ServiceEntityRepository
         parent::__construct($registry, Microposts::class);
     }
 
-    // /**
-    //  * @return Microposts[] Returns an array of Microposts objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    function getPosts()
     {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $query = $this->getEntityManager()->createQuery(
+            'SELECT mp.id as postId, u.id as userId, u.name, mp.content, mp.created_at, mp.updated_at, mp.likes 
+        FROM App:Users u JOIN App:Microposts mp
+        WHERE mp.user_id = u.id
+        ORDER BY mp.updated_at DESC');
+        return $query->getResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Microposts
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

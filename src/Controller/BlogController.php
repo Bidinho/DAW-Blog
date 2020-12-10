@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Microposts;
 use App\Repository\MicropostsRepository;
 use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,39 +13,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class BlogController extends AbstractController
 {
 
-
-
-
-
     /**
      * @Route("/", name="Home")
      */
-    public function index(UsersRepository $usersRepository, MicropostsRepository $micropostsRepository): Response
+    public function index(MicropostsRepository $micropostsRepository): Response
     {
         $session = new Session();
         $session->start();
 
-        $posts = $this->getPosts();
+        $posts = $micropostsRepository->getPosts();
         $info = $this->get_User($session);
         return $this->render('home/index.html.twig', [
-             'posts' => $posts,
+            'posts' => $posts,
             'info' => $info
         ]);
     }
 
 
-
-    function getPosts() {
-        $conn = $this->getDoctrine()->getManager()->getConnection();
-        $query = "SELECT microposts.id as postId, users.id as userId, users.name, microposts.content, microposts.created_at, microposts.updated_at, microposts.likes
-FROM microposts,users
-WHERE microposts.user_id = users.id ORDER by microposts.updated_at DESC";
-        $stmt = $conn->prepare($query);
-        $stmt->execute();
-        return $stmt->fetchAllAssociative();
-    }
-
-    function get_User(Session $session) {
+    function get_User(Session $session)
+    {
         $info['menu0'] = 'Home';
         $info['menu1'] = "Login";
         $info['menu2'] = "Register";
@@ -64,12 +51,9 @@ WHERE microposts.user_id = users.id ORDER by microposts.updated_at DESC";
 //            $_SESSION['userId'] = $qb[0]['id'];
 //            dump($_SESSION);
 //        }
-
-
-        dump($session);
-        if (!empty($session->get('username'))) {
-            $info['uName'] = $session->get('username');
-            $info['uId'] = $session->get('userId');
+        if ($this->getUser()) {
+            $info['uName'] = $this->getUser()->getUsername();
+            $info['uId'] = $this->getUser()->getId();
             $info['menu1'] = "Post";
             $info['menu2'] = "Logout";
         }
@@ -77,7 +61,8 @@ WHERE microposts.user_id = users.id ORDER by microposts.updated_at DESC";
         return $info;
     }
 
-    function getMenu() {
+    function getMenu()
+    {
 
     }
 

@@ -23,14 +23,25 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class,[
-                'attr' => ['class' => 'form-control mb-4','autofocus' => true]
+            ->add('name', TextType::class, [
+                'attr' => ['class' => 'form-control mb-4', 'autofocus' => true],
+                'required' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a name',
+                    ])]
             ])
-            ->add('email',EmailType::class,[
-                'attr' => ['class' => 'form-control mb-4']
+            ->add('email', EmailType::class, [
+                'attr' => ['class' => 'form-control mb-4'],
+                'required' => false,
+                'constraints' => [
+                new NotBlank([
+                    'message' => 'Please enter a valid mail',
+                ])]
             ])
-            ->add('password_digest', RepeatedType::class,[
+            ->add('password_digest', RepeatedType::class, [
                 'type' => PasswordType::class,
+                'required' => false,
                 'first_options' => ['label' => 'Password'],
                 'second_options' => ['label' => 'Confirm Password'],
                 'invalid_message' => 'Password do not match',
@@ -45,8 +56,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-        ;
+            ]);
 
     }
 
@@ -54,7 +64,7 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Users::class,
-           'csrf_protection' => false
+            'csrf_protection' => false
         ]);
     }
 }

@@ -109,6 +109,9 @@ class Users implements UserInterface
      */
     private $resetSentAt;
 
+
+    private $roles = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -259,15 +262,23 @@ class Users implements UserInterface
         return $this;
     }
 
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+
+        return $roles;
+    }
+
+
 
     public function getRoles()
     {
-        // TODO: Implement getRoles() method.
+        return ['ROLE_USER'];
     }
 
     public function getPassword()
     {
-        // TODO: Implement getPassword() method.
+       return $this->passwordDigest;
     }
 
     public function getSalt()
@@ -277,7 +288,7 @@ class Users implements UserInterface
 
     public function getUsername()
     {
-        // TODO: Implement getUsername() method.
+        return $this->email;
     }
 
     public function eraseCredentials()
