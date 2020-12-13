@@ -35,7 +35,7 @@
         </div>
     </nav>
     {% for message in app.flashes('login_success') %}
-        <div class="alert alert-success w-50 alert-dismissible mt-3 show mx-auto text-center" role="alert">{{ message~' '~app.user.name }}
+        <div class="alert alert-success w-50 alert-dismissible mt-3 show mx-auto text-center" role="alert">{{ message~' '~app.user.name~'!'}}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
