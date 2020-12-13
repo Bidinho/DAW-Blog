@@ -20,11 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33aab5b4-7f6c-4716-82f1-97e5a8cecac7" name="Default Changelist" comment="Done, email not sending properly">
+      <change afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/post/post.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/post/post.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enable" beforeDir="false" afterPath="$PROJECT_DIR$/enable" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/doca.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/doca.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/dogFaro.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/dogFaro.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/venice.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/venice.jpeg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +211,7 @@
       <workItem from="1607632837622" duration="2056000" />
       <workItem from="1607692026039" duration="7343000" />
       <workItem from="1607792048064" duration="17731000" />
-      <workItem from="1607857868268" duration="14376000" />
+      <workItem from="1607857868268" duration="15346000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <created>1607094119472</created>
@@ -274,7 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607867041694</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Done, email not sending properly">
+      <created>1607882975411</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1607882975411</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
