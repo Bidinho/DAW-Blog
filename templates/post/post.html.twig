@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post{% endblock %}
+
+{% block body %}
+
+    <section class="container form mt-4 white-box rounded">
+
+        <form method="post" action={{ path('post_blog',{'postId':postId}) }} class="m-5">
+
+            <div class="form-group">
+                <div class='text-center p-4'>
+                    <h3>Post Blog</h3>
+                </div>
+                <label for="exampleFormControlTextarea1"></label><textarea class="form-control"
+                                                                           id="exampleFormControlTextarea1" rows="4"
+                                                                           name="content">{{content}}</textarea>
+
+            </div>
+            <div class="text-center pt-4">
+                <button type="submit" style="width: 15rem;" class="btn main-blue text-light">Submit post</button>
+                <button type="button" style="width: 15rem;" class="btn btn-danger"
+                        onClick="window.location='index.php'">Cancel
+                </button>
+            </div>
+        </form>
+
+    </section>
+
+{% endblock %}

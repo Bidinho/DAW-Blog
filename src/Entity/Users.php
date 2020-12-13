@@ -278,7 +278,7 @@ class Users implements UserInterface
 
     public function getPassword()
     {
-       return $this->passwordDigest;
+        return $this->passwordDigest;
     }
 
     public function getSalt()

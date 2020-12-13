@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Microposts;
 use App\Repository\MicropostsRepository;
-use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,9 +19,8 @@ class BlogController extends AbstractController
     {
         $session = new Session();
         $session->start();
-
         $posts = $micropostsRepository->getPosts();
-        $info = $this->get_User($session);
+        $info = $this->get_User();
         return $this->render('home/index.html.twig', [
             'posts' => $posts,
             'info' => $info
@@ -30,7 +28,7 @@ class BlogController extends AbstractController
     }
 
 
-    function get_User(Session $session)
+    function get_User()
     {
         $info['menu0'] = 'Home';
         $info['menu1'] = "Login";
@@ -38,19 +36,6 @@ class BlogController extends AbstractController
         $info['uName'] = "";
         $info['uId'] = "";
 
-        $em = $this->getDoctrine()->getManager();
-        $qb = $em->createQueryBuilder();
-
-//        $_COOKIE['rememberMe'] = 1;
-//        if (!empty($_COOKIE['rememberMe'])) {
-//            $qb->select('id')
-//                ->from('Users', 'u')
-//                ->where('u.remember_digest = cookieRemember_digest')
-//                ->setParameter('cookieRemember_digest', $_COOKIE['rememberMe'])->getQuery()->getResult();
-//            $_SESSION['userName'] = $qb[0]['name'];
-//            $_SESSION['userId'] = $qb[0]['id'];
-//            dump($_SESSION);
-//        }
         if ($this->getUser()) {
             $info['uName'] = $this->getUser()->getUsername();
             $info['uId'] = $this->getUser()->getId();
@@ -61,9 +46,53 @@ class BlogController extends AbstractController
         return $info;
     }
 
-    function getMenu()
+    /**
+     * @Route("/post/{postId?}", name="Post")
+     * @param Request $request
+     * @return Response
+     */
+    public function post(Request $request, MicropostsRepository $micropostsRepository): Response
     {
-
+        $content = '';
+        $info = $this->get_User();
+        $postId = $request->get('postId');
+        if ($postId) {
+            $content = $micropostsRepository->getContentById($postId);
+        }
+        return $this->render('post/post.html.twig', [
+            'postId' => $postId,
+            'info' => $info,
+            'content' => $content
+        ]);
     }
+
+    /**
+     * @Route("/post_blog/{postId?}", name="post_blog")
+     * @param Request $request
+     * @return Response
+     */
+    public function post_blog(Request $request, MicropostsRepository $micropostsRepository): Response
+    {
+        $content = $request->get('content');
+        $user = $this->getUser();
+        $postId = $request->get('postId');
+        $postUid = $micropostsRepository->getPostUid($postId);
+        if ($user == NULL) {
+            $this->addFlash('error', 'Forbidden: You must login in first');
+            return $this->redirect($this->generateUrl('Home'));
+        } else if ($postUid && ($user->getId() != $postUid)) {
+            $this->addFlash('error', 'Forbidden: You can not edit other user\'s posts');
+            return $this->redirect($this->generateUrl('Home'));
+        } else if ($postId) {
+            $this->addFlash('success', 'Success: Post updated with success');
+            $micropostsRepository->updatePost($content, $postId);
+            return $this->redirect($this->generateUrl('Home'));
+        } else {
+            $this->addFlash('success', 'Success: New post created with success');
+            $micropostsRepository->insertPost($content, $user);
+            return $this->redirect($this->generateUrl('Home'));
+        }
+    }
+
 
 }

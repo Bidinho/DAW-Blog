@@ -8,6 +8,7 @@ security:
     my_provider:
       entity:
         class: App\Entity\Users
+        property: email
   firewalls:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -16,11 +17,16 @@ security:
       anonymous: lazy
       provider: my_provider
       form_login:
-#        login_path: Login
-#        check_path: Login
-#        default_target_path: Home
+        default_target_path: Home
+
+      remember_me:
+        secret: "%kernel.secret%"
+        lifetime: 604800 # 1 week in seconds
+        path: /
+        token_provider: 'Symfony\Bridge\Doctrine\Security\RememberMe\DoctrineTokenProvider'
       logout:
         path: /Logout
+        target: /logout_message
       guard:
         authenticators:
           - App\Security\CustomAuthenticator

@@ -35,8 +35,24 @@
         </div>
     </nav>
     {% for message in app.flashes('success') %}
-        <div class="success-message rounded p-3 align-self-center">
-            <h2 class="text-light"> {{ message }}</h2>
+        <div class="alert alert-success w-50 alert-dismissible mt-3 show mx-auto text-center" role="alert">{{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('standard') %}
+        <div class="alert alert-info w-50 alert-dismissible mt-3 show mx-auto text-center" role="alert">{{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger w-50 alert-dismissible mt-3 show mx-auto text-center" role="alert">{{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     {% endfor %}
     {% block body %}

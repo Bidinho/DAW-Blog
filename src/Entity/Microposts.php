@@ -50,7 +50,7 @@ class Microposts
     private $likes = '0';
 
     /**
-     * @var \Users
+     *
      *
      * @ORM\ManyToOne(targetEntity="Users")
      * @ORM\JoinColumns({
@@ -81,7 +81,7 @@ class Microposts
         return $this->created_at;
     }
 
-    public function setCreated_at(\DateTimeInterface $created_at): self
+    public function setCreated_at(String $created_at): self
     {
         $this->created_at = $created_at;
 
@@ -93,7 +93,7 @@ class Microposts
         return $this->updated_at;
     }
 
-    public function setUpdated_at(\DateTimeInterface $updated_at): self
+    public function setUpdated_at(String $updated_at): self
     {
         $this->updated_at = $updated_at;
 
@@ -119,7 +119,7 @@ class Microposts
 
     public function setUser(?Users $user): self
     {
-        $this->user = $user;
+        $this->user_id = $user;
 
         return $this;
     }

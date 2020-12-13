@@ -28,4 +28,50 @@ class MicropostsRepository extends ServiceEntityRepository
         ORDER BY mp.updated_at DESC');
         return $query->getResult();
     }
+
+    function getContentById($postId)
+    {
+        $query = $this->getEntityManager()->createQuery('SELECT m.content FROM App:Microposts m WHERE m.id = ?1');
+        $query->setParameter(1, $postId);
+        $result = $query->getResult();
+        if ($result) {
+            return $query->getResult()[0]['content'];
+        } else {
+            return '';
+        }
+    }
+
+    function insertPost($content, $user)
+    {
+        $entityManager = $this->getEntityManager();
+        $post = new Microposts();
+        $likes = 0;
+        $post->setContent($content);
+        $post->setUser($user);
+        $post->setCreated_at(date("Y-m-d H:i:s"));
+        $post->setUpdated_at(date("Y-m-d H:i:s"));
+        $post->setLikes($likes);
+        $entityManager->persist($post);
+        $entityManager->flush();
+    }
+
+    function updatePost($content, $postId) {
+        $query = $this->getEntityManager()->createQuery('UPDATE App:Microposts m SET m.content = ?1, m.updated_at = ?2 WHERE m.id = ?3');
+        $query->setParameter(1, $content);
+        $query->setParameter(2, new \DateTime());
+        $query->setParameter(3, $postId);
+        $query->getResult();
+    }
+
+    function getPostUid($postId) {
+        $query = $this->getEntityManager()->createQuery('SELECT IDENTITY(m.user_id) FROM App:Microposts m WHERE m.id = ?1');
+        $query->setParameter(1, $postId);
+        $result = $query->getResult();
+        if ($result) {
+            return $query->getResult()[0][1];
+        } else {
+            return '';
+        }
+    }
+
 }

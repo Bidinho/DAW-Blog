@@ -37,7 +37,7 @@
                     {{ post.name }}
                 </div>
                 <a class='text-right col nav-link text-light small' {% if app.user and post.userId == app.user.id %}
-{#                   href='{{ path('Blog/post.userId') }}#}
+                   href={{ path('Post',{'postId':post.postId}) }}
                    "> Update {% else %} > {% endif %}
                     </a>
                 </div>

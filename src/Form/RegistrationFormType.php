@@ -36,7 +36,7 @@ class RegistrationFormType extends AbstractType
                 'required' => false,
                 'constraints' => [
                 new NotBlank([
-                    'message' => 'Please enter a valid mail',
+                    'message' => 'Please enter a valid email address',
                 ])]
             ])
             ->add('password_digest', RepeatedType::class, [
