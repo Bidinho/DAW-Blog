@@ -1,9 +1,15 @@
-<h1>Hi!</h1>
 
-<p>To reset your password, please visit the following link</p>
 
+<h1>Olá Sr.(a) {{ user }}</h1>
+
+<p>Para obter uma nova password clique no link abaixo:</p>
 <a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
-
 <p>This link will expire in {{ tokenLifetime|date('g') }} hour(s).</p>
+<p> Se NÃO pediu uma nova password IGNORE este email. </p>
+<p> Cumprimentos,</p>
+<p> Webmaster!</p>
+<p> Página Web: http://daw.deei.fct.ualg.pt/~a64007/LAB9_10/ E-mail: a64007@deei.fct.ualg.pt</p>
+
+<p>NOTA: Não responda a este email, não vai obter resposta!</p>
 
 <p>Cheers!</p>

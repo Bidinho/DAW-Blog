@@ -71,7 +71,7 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Email could not be found.');
+            throw new CustomUserMessageAuthenticationException('Invalid credentials.');
         }
         return $user;
     }
@@ -83,7 +83,7 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        $request->getSession()->getFlashBag()->add('success','Good to see you again');
+        $request->getSession()->getFlashBag()->add('login_success','Welcome back');
         return new RedirectResponse($this->urlGenerator->generate('Home'));
 //        throw new \Exception('TODO: provide a valid redirect inside ' . __FILE__);
     }

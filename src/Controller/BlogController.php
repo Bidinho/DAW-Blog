@@ -78,17 +78,17 @@ class BlogController extends AbstractController
         $postId = $request->get('postId');
         $postUid = $micropostsRepository->getPostUid($postId);
         if ($user == NULL) {
-            $this->addFlash('error', 'Forbidden: You must login in first');
+            $this->addFlash('error', 'You must login in first');
             return $this->redirect($this->generateUrl('Home'));
         } else if ($postUid && ($user->getId() != $postUid)) {
-            $this->addFlash('error', 'Forbidden: You can not edit other user\'s posts');
+            $this->addFlash('error', 'You can not edit other user\'s posts');
             return $this->redirect($this->generateUrl('Home'));
         } else if ($postId) {
-            $this->addFlash('success', 'Success: Post updated with success');
+            $this->addFlash('success', 'Post updated with success');
             $micropostsRepository->updatePost($content, $postId);
             return $this->redirect($this->generateUrl('Home'));
         } else {
-            $this->addFlash('success', 'Success: New post created with success');
+            $this->addFlash('success', 'New post created with success');
             $micropostsRepository->insertPost($content, $user);
             return $this->redirect($this->generateUrl('Home'));
         }

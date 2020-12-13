@@ -20,4 +20,16 @@ class UsersRepository extends ServiceEntityRepository
     }
 
 
+    public function checkIfEmailExists($email): bool
+    {
+        $query = $this->getEntityManager()->createQuery('SELECT u.email FROM App:Users u WHERE u.email = ?1');
+        $query->setParameter(1, $email);
+        $result = $query->getResult();
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

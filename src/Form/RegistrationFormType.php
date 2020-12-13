@@ -44,7 +44,7 @@ class RegistrationFormType extends AbstractType
                 'required' => false,
                 'first_options' => ['label' => 'Password'],
                 'second_options' => ['label' => 'Confirm Password'],
-                'invalid_message' => 'Password do not match',
+                'invalid_message' => 'Passwords do not match',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
