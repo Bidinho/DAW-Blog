@@ -295,4 +295,9 @@ class Users implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
+
+    public function __toString(): String
+    {
+        return $this->name;
+    }
 }

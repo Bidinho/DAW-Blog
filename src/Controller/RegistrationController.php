@@ -25,6 +25,11 @@ class RegistrationController extends AbstractController
         $info['menu1'] = "Login";
         $info['menu2'] = "Register";
 
+        if ($this->getUser()) {
+            $this->addFlash('error', 'Must logout before register another user.');
+            return $this->redirectToRoute('Home');
+        }
+
         $user = new Users();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);

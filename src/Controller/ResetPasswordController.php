@@ -40,6 +40,13 @@ class ResetPasswordController extends AbstractController
      */
     public function request(Request $request, MailerInterface $mailer, UsersRepository $userRepository): Response
     {
+
+        if ($this->getUser()) {
+            $this->addFlash('error', 'You are already logged in, logout first please.');
+            return $this->redirectToRoute('Home');
+        }
+
+
         $form = $this->createForm(ResetPasswordRequestFormType::class);
         $form->handleRequest($request);
 
@@ -72,6 +79,11 @@ class ResetPasswordController extends AbstractController
      */
     public function checkEmail(): Response
     {
+        if ($this->getUser()) {
+            $this->addFlash('error', 'You are already logged in, logout first please.');
+            return $this->redirectToRoute('Home');
+        }
+
         $info['menu0'] = 'Home';
         $info['menu1'] = "Login";
         $info['menu2'] = "Register";
@@ -94,6 +106,12 @@ class ResetPasswordController extends AbstractController
      */
     public function reset(Request $request, UserPasswordEncoderInterface $passwordEncoder, string $token = null): Response
     {
+
+        if ($this->getUser()) {
+            $this->addFlash('error', 'You are already logged in, logout first please.');
+            return $this->redirectToRoute('Home');
+        }
+
         $info['menu0'] = 'Home';
         $info['menu1'] = "Login";
         $info['menu2'] = "Register";
@@ -188,9 +206,11 @@ class ResetPasswordController extends AbstractController
             ->context([
                 'resetToken' => $resetToken,
                 'tokenLifetime' => $this->resetPasswordHelper->getTokenLifetime(),
-                'user' => $user->getUsername()
+                'user' => $user->getName()
             ])
         ;
+
+        dump($email);
 
         $mailer->send($email);
 

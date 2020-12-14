@@ -114,7 +114,7 @@ class Microposts
 
     public function getUser(): ?Users
     {
-        return $this->user;
+        return $this->user_id;
     }
 
     public function setUser(?Users $user): self
