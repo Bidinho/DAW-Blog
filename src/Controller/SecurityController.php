@@ -18,10 +18,10 @@ class SecurityController extends AbstractController
         $info['menu1'] = "Login";
         $info['menu2'] = "Register";
 
-         if ($this->getUser()) {
-             $this->addFlash('error', 'Must logout before logging in again.');
-             return $this->redirectToRoute('Home');
-         }
+        if ($this->getUser()) {
+            $this->addFlash('error', 'Must logout before logging in again.');
+            return $this->redirectToRoute('Home');
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();

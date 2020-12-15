@@ -81,7 +81,7 @@ class Microposts
         return $this->created_at;
     }
 
-    public function setCreated_at(String $created_at): self
+    public function setCreated_at(string $created_at): self
     {
         $this->created_at = $created_at;
 
@@ -93,7 +93,7 @@ class Microposts
         return $this->updated_at;
     }
 
-    public function setUpdated_at(String $updated_at): self
+    public function setUpdated_at(string $updated_at): self
     {
         $this->updated_at = $updated_at;
 

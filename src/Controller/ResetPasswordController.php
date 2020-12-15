@@ -56,9 +56,8 @@ class ResetPasswordController extends AbstractController
                     $form->get('email')->getData(),
                     $mailer
                 );
-            }
-            else {
-                $this->addFlash('reset_password_error','Email address does not exist in the database');
+            } else {
+                $this->addFlash('reset_password_error', 'Email address does not exist in the database');
             }
         }
         $info['menu0'] = 'Home';
@@ -207,8 +206,7 @@ class ResetPasswordController extends AbstractController
                 'resetToken' => $resetToken,
                 'tokenLifetime' => $this->resetPasswordHelper->getTokenLifetime(),
                 'user' => $user->getName()
-            ])
-        ;
+            ]);
 
         dump($email);
 

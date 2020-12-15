@@ -53,6 +53,11 @@ class BlogController extends AbstractController
      */
     public function post(Request $request, MicropostsRepository $micropostsRepository): Response
     {
+        $user = $this->getUser();
+        if ($user == NULL) {
+            $this->addFlash('error', 'You must login in first');
+            return $this->redirect($this->generateUrl('Home'));
+        }
         $content = '';
         $info = $this->get_User();
         $postId = $request->get('postId');

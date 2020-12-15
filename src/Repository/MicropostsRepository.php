@@ -29,7 +29,7 @@ class MicropostsRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    function getContentById($postId)
+    function getContentById($postId): string
     {
         $query = $this->getEntityManager()->createQuery('SELECT m.content FROM App:Microposts m WHERE m.id = ?1');
         $query->setParameter(1, $postId);
@@ -55,7 +55,8 @@ class MicropostsRepository extends ServiceEntityRepository
         $entityManager->flush();
     }
 
-    function updatePost($content, $postId) {
+    function updatePost($content, $postId)
+    {
         $query = $this->getEntityManager()->createQuery('UPDATE App:Microposts m SET m.content = ?1, m.updated_at = ?2 WHERE m.id = ?3');
         $query->setParameter(1, $content);
         $query->setParameter(2, new \DateTime());
@@ -63,7 +64,8 @@ class MicropostsRepository extends ServiceEntityRepository
         $query->getResult();
     }
 
-    function getPostUid($postId) {
+    function getPostUid($postId)
+    {
         $query = $this->getEntityManager()->createQuery('SELECT IDENTITY(m.user_id) FROM App:Microposts m WHERE m.id = ?1');
         $query->setParameter(1, $postId);
         $result = $query->getResult();

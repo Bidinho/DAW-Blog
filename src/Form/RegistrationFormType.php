@@ -35,9 +35,9 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['class' => 'form-control mb-4'],
                 'required' => false,
                 'constraints' => [
-                new NotBlank([
-                    'message' => 'Please enter a valid email address',
-                ])]
+                    new NotBlank([
+                        'message' => 'Please enter a valid email address',
+                    ])]
             ])
             ->add('password_digest', RepeatedType::class, [
                 'type' => PasswordType::class,

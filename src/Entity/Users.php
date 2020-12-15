@@ -270,7 +270,6 @@ class Users implements UserInterface
     }
 
 
-
     public function getRoles()
     {
         return ['ROLE_USER'];
@@ -296,7 +295,7 @@ class Users implements UserInterface
         // TODO: Implement eraseCredentials() method.
     }
 
-    public function __toString(): String
+    public function __toString(): string
     {
         return $this->name;
     }
