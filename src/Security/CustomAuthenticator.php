@@ -82,7 +82,9 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        $request->getSession()->getFlashBag()->add('login_success', 'Welcome back');
+
+        $user = $token->getUser()->getName();
+        $request->getSession()->getFlashBag()->add('success', 'Welcome back ' . $user);
         return new RedirectResponse($this->urlGenerator->generate('Home'));
 //        throw new \Exception('TODO: provide a valid redirect inside ' . __FILE__);
     }

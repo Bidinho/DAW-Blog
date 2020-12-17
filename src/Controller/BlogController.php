@@ -20,31 +20,13 @@ class BlogController extends AbstractController
         $session = new Session();
         $session->start();
         $posts = $micropostsRepository->getPosts();
-        $info = $this->get_User();
+        $info = $this->setInfo();
         return $this->render('home/index.html.twig', [
             'posts' => $posts,
             'info' => $info
         ]);
     }
 
-
-    function get_User()
-    {
-        $info['menu0'] = 'Home';
-        $info['menu1'] = "Login";
-        $info['menu2'] = "Register";
-        $info['uName'] = "";
-        $info['uId'] = "";
-
-        if ($this->getUser()) {
-            $info['uName'] = $this->getUser()->getUsername();
-            $info['uId'] = $this->getUser()->getId();
-            $info['menu1'] = "Post";
-            $info['menu2'] = "Logout";
-        }
-
-        return $info;
-    }
 
     /**
      * @Route("/post/{postId?}", name="Post")
@@ -59,7 +41,7 @@ class BlogController extends AbstractController
             return $this->redirect($this->generateUrl('Home'));
         }
         $content = '';
-        $info = $this->get_User();
+        $info = $this->setInfo();
         $postId = $request->get('postId');
         if ($postId) {
             $content = $micropostsRepository->getContentById($postId);
@@ -67,7 +49,7 @@ class BlogController extends AbstractController
         return $this->render('post/post.html.twig', [
             'postId' => $postId,
             'info' => $info,
-            'content' => $content
+            'content' => $content,
         ]);
     }
 
@@ -85,12 +67,12 @@ class BlogController extends AbstractController
         if ($user == NULL) {
             $this->addFlash('error', 'You must login in first');
             return $this->redirect($this->generateUrl('Home'));
-        } else if ($postUid && ($user->getId() != $postUid)) {
-            $this->addFlash('error', 'You can not edit other user\'s posts');
-            return $this->redirect($this->generateUrl('Home'));
-        } else if ($postId) {
+        } else if ($postUid && ($user->getId() == $postUid)) {
             $this->addFlash('success', 'Post updated with success');
             $micropostsRepository->updatePost($content, $postId);
+            return $this->redirect($this->generateUrl('Home'));
+        } else if ($postId) {
+            $this->addFlash('error', 'You can not edit other user\'s posts');
             return $this->redirect($this->generateUrl('Home'));
         } else {
             $this->addFlash('success', 'New post created with success');
@@ -100,4 +82,21 @@ class BlogController extends AbstractController
     }
 
 
+    function setInfo(): array
+    {
+        $info['menu0'] = 'Home';
+        $info['menu1'] = "Login";
+        $info['menu2'] = "Register";
+        $info['uName'] = "";
+        $info['uId'] = "";
+
+        if ($this->getUser()) {
+            $info['uName'] = $this->getUser()->getUsername();
+            $info['uId'] = $this->getUser()->getId();
+            $info['menu1'] = "Post";
+            $info['menu2'] = "Logout";
+        }
+
+        return $info;
+    }
 }

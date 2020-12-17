@@ -46,6 +46,7 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('Home');
         }
 
+        $info = $this->setInfo();
 
         $form = $this->createForm(ResetPasswordRequestFormType::class);
         $form->handleRequest($request);
@@ -60,9 +61,6 @@ class ResetPasswordController extends AbstractController
                 $this->addFlash('reset_password_error', 'Email address does not exist in the database');
             }
         }
-        $info['menu0'] = 'Home';
-        $info['menu1'] = "Login";
-        $info['menu2'] = "Register";
 
 
         return $this->render('reset_password/request.html.twig', [
@@ -83,9 +81,7 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('Home');
         }
 
-        $info['menu0'] = 'Home';
-        $info['menu1'] = "Login";
-        $info['menu2'] = "Register";
+        $info = $this->setInfo();
 
         // We prevent users from directly accessing this page
         if (!$this->canCheckEmail()) {
@@ -111,9 +107,7 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('Home');
         }
 
-        $info['menu0'] = 'Home';
-        $info['menu1'] = "Login";
-        $info['menu2'] = "Register";
+        $info = $this->setInfo();
 
         if ($token) {
             // We store the token in session and remove it from the URL, to avoid the URL being
@@ -213,5 +207,14 @@ class ResetPasswordController extends AbstractController
         $mailer->send($email);
 
         return $this->redirectToRoute('app_check_email');
+    }
+
+    public function setInfo(): array
+    {
+        $info['menu0'] = 'Home';
+        $info['menu1'] = "Login";
+        $info['menu2'] = "Register";
+
+        return $info;
     }
 }

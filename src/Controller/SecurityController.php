@@ -29,8 +29,8 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
         return $this->render('security/login.html.twig',
             ['last_username' => $lastUsername,
-            'error' => $error,
-            'info' => $info]);
+                'error' => $error,
+                'info' => $info]);
     }
 
     /**
@@ -55,7 +55,7 @@ class SecurityController extends AbstractController
      */
     public function loginMessage()
     {
-        $this->addFlash('success', "It's here".$this->getUser());
+        $this->addFlash('success', "It's here" . $this->getUser());
         return $this->redirectToRoute('Home');
     }
 }
