@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Users;
 use App\Form\ChangePasswordFormType;
 use App\Form\ResetPasswordRequestFormType;
+use App\Repository\ResetPasswordRequestRepository;
 use App\Repository\UsersRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,7 +39,7 @@ class ResetPasswordController extends AbstractController
      *
      * @Route("", name="app_forgot_password_request")
      */
-    public function request(Request $request, MailerInterface $mailer, UsersRepository $userRepository): Response
+    public function request(Request $request, MailerInterface $mailer, UsersRepository $userRepository, ResetPasswordRequestRepository $resetPasswordRequestRepository): Response
     {
 
         if ($this->getUser()) {
@@ -53,10 +54,15 @@ class ResetPasswordController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($userRepository->checkIfEmailExists($form->get('email')->getData())) {
-                return $this->processSendingPasswordResetEmail(
-                    $form->get('email')->getData(),
-                    $mailer
-                );
+                if ($resetPasswordRequestRepository->getByUserId($userRepository->getIdFromEmail($form->get('email')->getData())) != -1) {
+                    $this->addFlash('reset_password_error', 'Reset password link already was already sent to this address, please check your
+                    email inbox or spam');
+                } else {
+                    return $this->processSendingPasswordResetEmail(
+                        $form->get('email')->getData(),
+                        $mailer
+                    );
+                }
             } else {
                 $this->addFlash('reset_password_error', 'Email address does not exist in the database');
             }

@@ -32,4 +32,16 @@ class UsersRepository extends ServiceEntityRepository
         }
     }
 
+    public function getIdFromEmail($email): int
+    {
+        $query = $this->getEntityManager()->createQuery('SELECT u.id FROM App:Users u WHERE u.email = ?1');
+        $query->setParameter(1, $email);
+        $result = $query->getResult();
+        if ($result) {
+            return $result[0]['id'];
+        } else {
+            return -1;
+        }
+    }
+
 }

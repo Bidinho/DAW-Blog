@@ -19,7 +19,7 @@ class BlogController extends AbstractController
     {
         $session = new Session();
         $session->start();
-        $posts = $micropostsRepository->getPosts();
+        $posts = $micropostsRepository->getPostsSortedByUpdated();
         $info = $this->setInfo();
         return $this->render('home/index.html.twig', [
             'posts' => $posts,

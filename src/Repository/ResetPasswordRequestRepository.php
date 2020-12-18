@@ -29,4 +29,19 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         return new ResetPasswordRequest($user, $expiresAt, $selector, $hashedToken);
     }
 
+    public function getByUserId($id): int
+    {
+        $query = $this->getEntityManager()->createQuery(
+            'SELECT IDENTITY (rp.user)
+        FROM App:ResetPasswordRequest rp
+        WHERE IDENTITY (rp.user) = ?1')
+            ->setParameter(1, $id);
+        $result = $query->getResult();
+        if ($result) {
+            return $query->getResult()[0][1];
+        } else {
+            return -1;
+        }
+    }
+
 }

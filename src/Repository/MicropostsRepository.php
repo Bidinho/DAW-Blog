@@ -19,7 +19,7 @@ class MicropostsRepository extends ServiceEntityRepository
         parent::__construct($registry, Microposts::class);
     }
 
-    function getPosts()
+    function getPostsSortedByUpdated()
     {
         $query = $this->getEntityManager()->createQuery(
             'SELECT mp.id as postId, u.id as userId, u.name, mp.content, mp.created_at, mp.updated_at, mp.likes 
